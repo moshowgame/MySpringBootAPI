@@ -1,0 +1,195 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.hsbc.lmd</groupId>
+  <artifactId>MySpringBootAPI</artifactId>
+  <packaging>jar</packaging>
+  <version>1</version>
+  <name>SpringBootAPI</name>
+  <url>https://zhengkai.blog.csdn.net/</url>
+
+	<properties>
+		<!-- 指定编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- 指定jdk版本 -->
+		<java.version>1.8</java.version>
+		<springboot.version>2.6.15</springboot.version>
+	</properties>
+
+  <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+	</repositories>
+   <!-- spring-boot-starter-parent包含了大量配置好的依赖管理，在自己项目添加这些依赖的时候不需要写<version>版本号 -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.7.8</version>
+	</parent>
+  <dependencies>
+	  <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+	  <dependency>
+		  <groupId>org.projectlombok</groupId>
+		  <artifactId>lombok</artifactId>
+		  <version>1.18.24</version>
+		  <scope>provided</scope>
+	  </dependency>
+	  <!-- 实现web功能 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	  <!-- 模版 -->
+	  <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
+	  <!--<dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-freemarker</artifactId>
+	  </dependency>-->
+	  <dependency>
+		  <groupId>com.alibaba</groupId>
+		  <artifactId>druid-spring-boot-starter</artifactId>
+		  <version>1.2.15</version>
+	  </dependency>
+		<!--<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>-->
+	  <dependency>
+		  <groupId>org.postgresql</groupId>
+		  <artifactId>postgresql</artifactId>
+		  <version>42.3.10</version>
+	  </dependency>
+		<!--quartz依赖-->
+		<!-- <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-quartz</artifactId>
+		</dependency> -->
+		<!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+		<dependency>
+			<groupId>cn.hutool</groupId>
+			<artifactId>hutool-all</artifactId>
+			<version>5.8.28</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+		<!-- <dependency>
+			<groupId>com.baomidou</groupId>
+			<artifactId>mybatis-plus-boot-starter</artifactId>
+			<version>3.5.1</version>
+		</dependency> -->
+	  <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+<!--	  <dependency>-->
+<!--		  <groupId>com.alibaba</groupId>-->
+<!--		  <artifactId>fastjson</artifactId>-->
+<!--		  <version>1.2.83</version>-->
+<!--	  </dependency>-->
+	  <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	  <dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-lang3</artifactId>
+		  <version>3.14.0</version>
+	  </dependency>
+	  <!-- springboot-json -->
+	  <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-json</artifactId>
+	  </dependency>
+	  <!--server issue-->
+	  <!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+<!--	  <dependency>-->
+<!--		  <groupId>javax.xml.bind</groupId>-->
+<!--		  <artifactId>jaxb-api</artifactId>-->
+<!--		  <version>2.3.1</version>-->
+<!--	  </dependency>-->
+	  <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+<!--	  <dependency>-->
+<!--		  <groupId>org.jsoup</groupId>-->
+<!--		  <artifactId>jsoup</artifactId>-->
+<!--		  <version>1.16.1</version>-->
+<!--	  </dependency>-->
+<!--	  <dependency>-->
+<!--		  <groupId>com.google.code.gson</groupId>-->
+<!--		  <artifactId>gson</artifactId>-->
+<!--		  <version>2.10.1</version>-->
+<!--	  </dependency>-->
+	  <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5 -->
+<!--	  <dependency>-->
+<!--		  <groupId>org.apache.httpcomponents.client5</groupId>-->
+<!--		  <artifactId>httpclient5</artifactId>-->
+<!--		  <version>5.2.1</version>-->
+<!--	  </dependency>-->
+
+	  <!--	  &lt;!&ndash; 引入fluent-mybatis 运行依赖包, scope为compile &ndash;&gt;-->
+<!--	  <dependency>-->
+<!--		  <groupId>com.github.atool</groupId>-->
+<!--		  <artifactId>fluent-mybatis</artifactId>-->
+<!--		  <version>1.8.7</version>-->
+<!--	  </dependency>-->
+<!--	  &lt;!&ndash; 引入fluent-mybatis-processor, scope设置为provider 编译需要，运行时不需要 &ndash;&gt;-->
+<!--	  <dependency>-->
+<!--		  <groupId>com.github.atool</groupId>-->
+<!--		  <artifactId>fluent-mybatis-processor</artifactId>-->
+<!--		  <scope>provided</scope>-->
+<!--		  <version>1.8.7</version>-->
+<!--	  </dependency>-->
+<!--	  <dependency>-->
+<!--		  <groupId>us.codecraft</groupId>-->
+<!--		  <artifactId>webmagic-core</artifactId>-->
+<!--		  <version>0.8.0</version>-->
+<!--	  </dependency>-->
+<!--	  <dependency>-->
+<!--		  <groupId>us.codecraft</groupId>-->
+<!--		  <artifactId>webmagic-extension</artifactId>-->
+<!--		  <version>0.8.0</version>-->
+<!--	  </dependency>-->
+	  <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-context</artifactId>
+<!--		  <version>5.3.19</version>-->
+	  </dependency>
+	  <dependency>
+		  <groupId>org.springframework</groupId>
+		  <artifactId>spring-jdbc</artifactId>
+	  </dependency>
+<!--	  <dependency>-->
+<!--		  <groupId>org.mybatis</groupId>-->
+<!--		  <artifactId>mybatis-spring</artifactId>-->
+<!--		  <version>2.0.6</version>-->
+<!--	  </dependency>-->
+	  <dependency>
+		  <groupId>org.apache.commons</groupId>
+		  <artifactId>commons-dbcp2</artifactId>
+		  <version>2.5.0</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>junit</groupId>
+		  <artifactId>junit</artifactId>
+		  <version>4.13.1</version>
+		  <scope>compile</scope>
+	  </dependency>
+	  <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-boot-starter -->
+	  <dependency>
+		  <groupId>com.baomidou</groupId>
+		  <artifactId>mybatis-plus-boot-starter</artifactId>
+		  <version>3.5.3.1</version>
+	  </dependency>
+	  <dependency>
+		  <groupId>com.baomidou</groupId>
+		  <artifactId>mybatis-plus-generator</artifactId>
+		  <version>3.5.3.1</version>
+	  </dependency>
+  </dependencies>
+
+
+  <build>
+	<plugins>
+		<plugin>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-maven-plugin</artifactId>
+		</plugin>
+	</plugins>
+</build>
+
+</project>
