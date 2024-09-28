@@ -1,19 +1,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.hsbc.lmd</groupId>
-  <artifactId>MySpringBootAPI</artifactId>
-  <packaging>jar</packaging>
-  <version>1</version>
-  <name>SpringBootAPI</name>
-  <url>https://zhengkai.blog.csdn.net/</url>
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.softdev.system</groupId>
+	<artifactId>MySpringBootAPI</artifactId>
+	<packaging>jar</packaging>
+	<version>1</version>
+	<name>SpringBootAPI</name>
+	<url>https://zhengkai.blog.csdn.net/</url>
 
 	<properties>
 		<!-- 指定编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- 指定jdk版本 -->
 		<java.version>1.8</java.version>
-		<springboot.version>2.6.15</springboot.version>
 	</properties>
 
 	<repositories>
