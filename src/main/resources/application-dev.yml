@@ -2,6 +2,11 @@ server:
   port: 12666
   servlet:
       context-path: /api
+  undertow:
+    threads:
+      io: 4
+      worker: 20
+    url-charset: UTF-8
 spring:
     banner:
       charset: UTF-8

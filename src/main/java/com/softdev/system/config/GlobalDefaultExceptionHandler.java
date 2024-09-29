@@ -1,8 +1,8 @@
 package com.softdev.system.config;
 
-import javax.servlet.http.HttpServletRequest;
 
 import com.softdev.system.util.ReturnUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
