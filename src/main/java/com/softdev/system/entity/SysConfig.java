@@ -5,12 +5,14 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 @Data
 public class SysConfig  implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     /**
