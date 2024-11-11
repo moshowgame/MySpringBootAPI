@@ -29,7 +29,7 @@ SpringBoot脚手架，基于SpringBoot3+Druid+PgSQL+MyBatisPlus13+FastJSON2+Lomb
 5. 导入`D:\Workspace\Project\MySpringBootAPI\src\main\resources\SQL\public.sql`到你的数据库去，新建一个叫TEST的空白数据库，编码UTF8
 6. 找到Application，运行项目
 
-# Upgrade Issue Resolution 升级问题解决方案
+# Useful Tips
 - 如果你最近也在升级FastJson到FastJson2版本，而跟我一样也遇到了FastJsonHttpMessageConverter找不到类问题以及FastJsonConfig找不到问题，那么恭喜你，看完本文，安装完fastjson2、fastjson2-extension、fastjson2-extension-spring6这三个类库，你就可以成功使用新版FastJson2了。
  [FastJson2中FastJsonHttpMessageConverter找不到类问题](https://blog.csdn.net/moshowgame/article/details/138013669)
 
@@ -37,6 +37,8 @@ SpringBoot脚手架，基于SpringBoot3+Druid+PgSQL+MyBatisPlus13+FastJSON2+Lomb
  [java: 程序包javax.servlet.http不存在](https://zhengkai.blog.csdn.net/article/details/131362304)
 
 - 如果你还没配置好Druid，没有充分利用好他的慢监控/WebFilter，那么赶快开始你的配置吧 [SpringBoot3+Druid YAML配置](https://blog.csdn.net/moshowgame/article/details/142641883)
+
+- 如何配置SQL日志输出？请看[MybatisPlus使用P6SY打印SQL日志](https://blog.csdn.net/moshowgame/article/details/143697627)
 
 
 # 运行效果
