@@ -14,6 +14,8 @@ SpringBoot脚手架，基于SpringBoot3+Druid+PgSQL+MyBatisPlus13+FastJSON2+Lomb
 <mybatisplus.version>3.5.8</mybatisplus.version>
 <jakarta.version>6.1.0</jakarta.version>
 <fastjson.version>2.0.53</fastjson.version>
+<p6sy.version>1.10.0</p6sy.version>
+<springdoc.version>2.6.0</springdoc.version>
 ```
 
 # Author
@@ -90,6 +92,7 @@ SpringBoot脚手架，基于SpringBoot3+Druid+PgSQL+MyBatisPlus13+FastJSON2+Lomb
 
 | 日期         | 内容                                                     |
 |------------|--------------------------------------------------------|
+| 2024-11-11 | MybatisPlus使用P6SY打印SQL日志。新增SwaggerUI(SpringDoc)功能。     |
 | 2024-09-29 | 优化Druid配置。                                             |
 | 2024-09-28 | 初始化3.3.4版本，修改默认web容器为undertow，配置FastJson2，修复jakarta问题。 |
 | 2024-06-27 | 初始化2.7.8版本。                                            |

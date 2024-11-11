@@ -31,8 +31,8 @@ public class IndexController {
     /**
      * <a href="http://localhost:12666/api/author2">view api</a>
      */
-    @GetMapping("/author2")
-    public Object author2(){
+    @GetMapping("/developer")
+    public Object developer(){
         return ReturnUtil.DATA(
                 sysConfigMapper.selectOne(
                         new QueryWrapper<SysConfig>()

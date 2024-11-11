@@ -71,3 +71,13 @@ spring:
           login-username: admin
           # 登录密码
           login-password: 123456
+decorator:
+  datasource:
+    p6spy:
+      # 日志格式
+      log-format: "\ntime:%(executionTime) || sql:%(sql)\n"
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-doc
+  show-login-endpoint: true
