@@ -2,10 +2,10 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.softdev.system</groupId>
-	<artifactId>MySpringBootAPI</artifactId>
+	<artifactId>springboot-api-template</artifactId>
 	<packaging>jar</packaging>
 	<version>1</version>
-	<name>SpringBootAPI</name>
+	<name>SpringBoot API Template</name>
 	<url>https://zhengkai.blog.csdn.net/</url>
 
 	<properties>

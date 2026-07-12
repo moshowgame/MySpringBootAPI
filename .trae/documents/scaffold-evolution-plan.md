@@ -1,4 +1,4 @@
-# MySpringBootAPI 脚手架进化实施计划
+# springboot-api-template 进化实施计划
 
 ## Context
 当前项目是一个 Spring Boot 3.3.4 脚手架，使用 Undertow + MyBatis Plus，缺少认证、架构规范和质量保障。用户要求：(1) 切回 Tomcat (2) MyBatis Plus 换为 MyBatis 注解模式 (3) 基于 Spring Security 的安全加固 (4) 架构规范 (5) 质量保障。

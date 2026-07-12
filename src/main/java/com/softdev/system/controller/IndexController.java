@@ -8,6 +8,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index() {
-        return "MySpringBootAPI is running";
+        return "springboot-api-template is running";
     }
 }

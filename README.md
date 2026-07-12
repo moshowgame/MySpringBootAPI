@@ -1,6 +1,6 @@
-# MySpringBootAPI
+# springboot-api-template
 ----
-SpringBoot3脚手架，基于SpringBoot3+Tomcat+HikariCP+PgSQL+MyBatis+SpringSecurity+JWT+FastJSON2+Lombok。
+SpringBoot3 API模板，基于SpringBoot3+Tomcat+HikariCP+PgSQL+MyBatis+SpringSecurity+JWT+FastJSON2+Lombok。
 
 ## 技术栈
 

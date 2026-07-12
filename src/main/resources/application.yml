@@ -16,7 +16,7 @@ spring:
   banner:
     charset: UTF-8
   application:
-    name: MySpringBootAPI
+    name: springboot-api-template
   mvc:
     static-path-pattern: /static/**
   servlet:
