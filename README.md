@@ -17,7 +17,9 @@ SpringBoot3脚手架，基于SpringBoot3+Tomcat+Druid+PgSQL+MyBatis+SpringSecuri
 | FastJSON2 | 2.0.53 | JSON序列化（替代Jackson） |
 | SpringDoc | 2.6.0 | OpenAPI/Swagger UI |
 | P6Spy | 1.10.0 | SQL日志输出 |
-| Hutool | 5.8.28 | 工具库 |
+| Apache Commons Lang3 | 3.17.0 | 字符串/对象工具 |
+| Apache Commons Codec | 1.17.1 | 编码/解码工具 |
+| Apache Commons Collections4 | 4.4 | 集合工具 |
 | Jasypt | 3.0.5 | 配置文件加密 |
 | Lombok | 1.18.24 | |
 | JUnit | 5 (Jupiter) | spring-boot-starter-test |

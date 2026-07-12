@@ -18,8 +18,9 @@
 		<lombok.version>1.18.24</lombok.version>
 		<druid.version>1.2.23</druid.version>
 		<postgresql.version>42.3.10</postgresql.version>
-		<hutool.version>5.8.28</hutool.version>
 		<commonslang3.version>3.17.0</commonslang3.version>
+			<commonscodec.version>1.17.1</commonscodec.version>
+			<commonscollections4.version>4.4</commonscollections4.version>
 			<mybatis.version>3.0.4</mybatis.version>
 		<jakarta.version>6.1.0</jakarta.version>
 		<fastjson.version>2.0.53</fastjson.version>
@@ -96,18 +97,22 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-quartz</artifactId>
 		</dependency> -->
-		<!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
-		<dependency>
-			<groupId>cn.hutool</groupId>
-			<artifactId>hutool-all</artifactId>
-			<version>${hutool.version}</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${commonslang3.version}</version>
-		</dependency>
+		<!-- Apache Commons -->
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commonslang3.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>${commonscodec.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>${commonscollections4.version}</version>
+			</dependency>
 		<!-- springboot-json -->
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
