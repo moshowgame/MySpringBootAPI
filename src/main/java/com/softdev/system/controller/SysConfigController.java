@@ -8,7 +8,6 @@ import com.softdev.system.vo.SysConfigVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +18,11 @@ import java.util.List;
 @RequestMapping("/config")
 public class SysConfigController {
 
-    @Autowired
-    private SysConfigService sysConfigService;
+    private final SysConfigService sysConfigService;
+
+    public SysConfigController(SysConfigService sysConfigService) {
+        this.sysConfigService = sysConfigService;
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "根据ID查询配置")

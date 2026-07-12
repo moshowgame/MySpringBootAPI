@@ -5,7 +5,6 @@ import com.softdev.system.exception.BusinessException;
 import com.softdev.system.mapper.SysConfigMapper;
 import com.softdev.system.service.SysConfigService;
 import com.softdev.system.vo.SysConfigVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,8 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class SysConfigServiceImpl implements SysConfigService {
 
-    @Autowired
-    private SysConfigMapper sysConfigMapper;
+    private final SysConfigMapper sysConfigMapper;
+
+    public SysConfigServiceImpl(SysConfigMapper sysConfigMapper) {
+        this.sysConfigMapper = sysConfigMapper;
+    }
 
     @Override
     public SysConfigVO getById(Long id) {

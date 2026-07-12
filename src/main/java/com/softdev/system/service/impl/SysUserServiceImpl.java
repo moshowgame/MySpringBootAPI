@@ -4,7 +4,6 @@ import com.softdev.system.entity.SysUser;
 import com.softdev.system.exception.BusinessException;
 import com.softdev.system.mapper.SysUserMapper;
 import com.softdev.system.service.SysUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,11 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SysUserServiceImpl implements SysUserService {
 
-    @Autowired
-    private SysUserMapper sysUserMapper;
+    private final SysUserMapper sysUserMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public SysUserServiceImpl(SysUserMapper sysUserMapper, PasswordEncoder passwordEncoder) {
+        this.sysUserMapper = sysUserMapper;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public SysUser getByUsername(String username) {

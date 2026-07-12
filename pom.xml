@@ -9,25 +9,19 @@
 	<url>https://zhengkai.blog.csdn.net/</url>
 
 	<properties>
-		<!-- 指定编码 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!-- 指定jdk版本 -->
 		<java.version>17</java.version>
-		<springboot.version>3.3.4</springboot.version>
-<!--		<springboot.version>2.7.8</springboot.version>-->
-		<lombok.version>1.18.24</lombok.version>
+		<lombok.version>1.18.36</lombok.version>
 		<druid.version>1.2.23</druid.version>
-		<postgresql.version>42.3.10</postgresql.version>
 		<commonslang3.version>3.17.0</commonslang3.version>
-			<commonscodec.version>1.17.1</commonscodec.version>
-			<commonscollections4.version>4.4</commonscollections4.version>
-			<mybatis.version>3.0.4</mybatis.version>
-		<jakarta.version>6.1.0</jakarta.version>
+		<commonscodec.version>1.17.1</commonscodec.version>
+		<commonscollections4.version>4.4</commonscollections4.version>
+		<mybatis.version>3.0.4</mybatis.version>
 		<fastjson.version>2.0.53</fastjson.version>
 		<p6sy.version>1.10.0</p6sy.version>
-			<springdoc.version>2.6.0</springdoc.version>
-			<jjwt.version>0.12.6</jjwt.version>
-			<jasypt.version>3.0.5</jasypt.version>
+		<springdoc.version>2.6.0</springdoc.version>
+		<jjwt.version>0.12.6</jjwt.version>
+		<jasypt.version>3.0.5</jasypt.version>
 	</properties>
 
 	<repositories>
@@ -37,94 +31,72 @@
 			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
-	<!-- spring-boot-starter-parent包含了大量配置好的依赖管理，在自己项目添加这些依赖的时候不需要写<version>版本号 -->
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.3.4</version>
 	</parent>
+
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<!-- Lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>${lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+
+		<!-- Web -->
 		<dependency>
-			<groupId>jakarta.servlet</groupId>
-			<artifactId>jakarta.servlet-api</artifactId>
-			<version>${jakarta.version}</version>
-			<scope>provided</scope>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-json</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
-		<!-- 实现web功能 -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-web</artifactId>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-starter-json</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-		<!-- 模版 -->
-		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
-		<!--<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-freemarker</artifactId>
-        </dependency>-->
-		<!-- https://mvnrepository.com/artifact/com.alibaba/druid-spring-boot-3-starter -->
+		<!-- Druid -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid-spring-boot-3-starter</artifactId>
 			<version>${druid.version}</version>
 		</dependency>
-		<!--<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>${mysql.version}</version>
-		</dependency>-->
+
+		<!-- PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>${postgresql.version}</version>
 		</dependency>
-		<!--quartz依赖-->
-		<!-- <dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-quartz</artifactId>
-		</dependency> -->
+
 		<!-- Apache Commons -->
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>${commonslang3.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>commons-codec</groupId>
-				<artifactId>commons-codec</artifactId>
-				<version>${commonscodec.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-collections4</artifactId>
-				<version>${commonscollections4.version}</version>
-			</dependency>
-		<!-- springboot-json -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-json</artifactId>
-			</dependency>
-		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
-			<dependency>
-				<groupId>org.mybatis.spring.boot</groupId>
-				<artifactId>mybatis-spring-boot-starter</artifactId>
-				<version>${mybatis.version}</version>
-			</dependency>
-		<!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>${commonslang3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>${commonscodec.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>${commonscollections4.version}</version>
+		</dependency>
+
+		<!-- MyBatis -->
+		<dependency>
+			<groupId>org.mybatis.spring.boot</groupId>
+			<artifactId>mybatis-spring-boot-starter</artifactId>
+			<version>${mybatis.version}</version>
+		</dependency>
+
+		<!-- FastJSON2 -->
 		<dependency>
 			<groupId>com.alibaba.fastjson2</groupId>
 			<artifactId>fastjson2</artifactId>
@@ -135,67 +107,76 @@
 			<artifactId>fastjson2-extension-spring6</artifactId>
 			<version>${fastjson.version}</version>
 		</dependency>
+
+		<!-- P6Spy -->
 		<dependency>
 			<groupId>com.github.gavlyukovskiy</groupId>
 			<artifactId>p6spy-spring-boot-starter</artifactId>
 			<version>${p6sy.version}</version>
 		</dependency>
+
+		<!-- SpringDoc -->
 		<dependency>
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${springdoc.version}</version>
 		</dependency>
-		<!-- springdoc Runtime library -->
-			<dependency>
-				<groupId>com.github.therapi</groupId>
-				<artifactId>therapi-runtime-javadoc</artifactId>
-				<version>0.15.0</version>
-			</dependency>
-			<!-- Spring Security -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-security</artifactId>
-			</dependency>
-			<!-- JWT -->
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt-api</artifactId>
-				<version>${jjwt.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt-impl</artifactId>
-				<version>${jjwt.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<dependency>
-				<groupId>io.jsonwebtoken</groupId>
-				<artifactId>jjwt-jackson</artifactId>
-				<version>${jjwt.version}</version>
-				<scope>runtime</scope>
-			</dependency>
-			<!-- Jasypt for config encryption -->
-			<dependency>
-				<groupId>com.github.ulisesbocchio</groupId>
-				<artifactId>jasypt-spring-boot-starter</artifactId>
-				<version>${jasypt.version}</version>
-			</dependency>
-			<!-- Validation -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-validation</artifactId>
-			</dependency>
-			<!-- AOP -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-aop</artifactId>
-			</dependency>
-			<!-- Test -->
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-starter-test</artifactId>
-				<scope>test</scope>
-			</dependency>
+		<dependency>
+			<groupId>com.github.therapi</groupId>
+			<artifactId>therapi-runtime-javadoc</artifactId>
+			<version>0.15.0</version>
+		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!-- JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+			<version>${jjwt.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+			<version>${jjwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Jasypt -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>${jasypt.version}</version>
+		</dependency>
+
+		<!-- Validation -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- AOP -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -208,19 +189,19 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-						<annotationProcessorPaths>
-							<path>
-								<groupId>org.projectlombok</groupId>
-								<artifactId>lombok</artifactId>
-								<version>${lombok.version}</version>
-							</path>
-							<path>
-								<groupId>com.github.therapi</groupId>
-								<artifactId>therapi-runtime-javadoc-scribe</artifactId>
-								<version>0.15.0</version>
-							</path>
-						</annotationProcessorPaths>
-					</configuration>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+						<path>
+							<groupId>com.github.therapi</groupId>
+							<artifactId>therapi-runtime-javadoc-scribe</artifactId>
+							<version>0.15.0</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

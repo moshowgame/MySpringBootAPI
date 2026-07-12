@@ -1,3 +1,45 @@
+server:
+  port: 12666
+  servlet:
+    context-path: /api
+  tomcat:
+    threads:
+      max: 200
+      min-spare: 10
+    max-connections: 8192
+    accept-count: 100
+    uri-encoding: UTF-8
+
 spring:
   profiles:
     active: dev
+  banner:
+    charset: UTF-8
+  application:
+    name: MySpringBootAPI
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-doc
+  show-login-endpoint: true
+
+jwt:
+  expiration: 86400000
+
+cors:
+  allowed-origins: "http://localhost:3000,http://localhost:8080"
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD:devsecret}
