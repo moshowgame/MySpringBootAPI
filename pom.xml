@@ -12,7 +12,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>17</java.version>
 		<lombok.version>1.18.36</lombok.version>
-		<druid.version>1.2.23</druid.version>
 		<commonslang3.version>3.17.0</commonslang3.version>
 		<commonscodec.version>1.17.1</commonscodec.version>
 		<commonscollections4.version>4.4</commonscollections4.version>
@@ -57,13 +56,6 @@
 					<artifactId>spring-boot-starter-json</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<!-- Druid -->
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-3-starter</artifactId>
-			<version>${druid.version}</version>
 		</dependency>
 
 		<!-- PostgreSQL -->

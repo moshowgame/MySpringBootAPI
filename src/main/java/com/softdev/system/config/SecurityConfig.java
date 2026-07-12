@@ -42,7 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/auth/**", "/api-doc", "/api-doc/**",
                                 "/swagger-ui/**", "/swagger-ui.html",
-                                "/system/druid/**", "/static/**").permitAll()
+                                "/static/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
