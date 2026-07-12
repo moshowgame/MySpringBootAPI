@@ -19,8 +19,17 @@ public class JwtTokenProvider {
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
+    private volatile SecretKey cachedSigningKey;
+
     private SecretKey getSigningKey() {
-        return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+        if (cachedSigningKey == null) {
+            synchronized (this) {
+                if (cachedSigningKey == null) {
+                    cachedSigningKey = Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
+                }
+            }
+        }
+        return cachedSigningKey;
     }
 
     public String generateToken(String username) {

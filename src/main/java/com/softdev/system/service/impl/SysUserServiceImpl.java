@@ -7,6 +7,7 @@ import com.softdev.system.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
@@ -33,11 +34,13 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    @Transactional
     public void updateUser(SysUser user) {
         sysUserMapper.updateById(user);
     }
 
     @Override
+    @Transactional
     public void register(SysUser user) {
         SysUser existing = sysUserMapper.selectByUsername(user.getUsername());
         if (existing != null) {

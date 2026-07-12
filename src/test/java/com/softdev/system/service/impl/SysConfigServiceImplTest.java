@@ -91,10 +91,24 @@ class SysConfigServiceImplTest {
     void create() {
         SysConfig config = new SysConfig();
         config.setParamKey("newKey");
+        when(sysConfigMapper.selectByParamKey("newKey")).thenReturn(null);
         when(sysConfigMapper.insert(config)).thenReturn(1);
 
         assertDoesNotThrow(() -> sysConfigService.create(config));
         verify(sysConfigMapper).insert(config);
+    }
+
+    @Test
+    void create_duplicateKey() {
+        SysConfig config = new SysConfig();
+        config.setParamKey("existingKey");
+        SysConfig existing = new SysConfig();
+        existing.setId(1L);
+        existing.setParamKey("existingKey");
+        when(sysConfigMapper.selectByParamKey("existingKey")).thenReturn(existing);
+
+        assertThrows(BusinessException.class, () -> sysConfigService.create(config));
+        verify(sysConfigMapper, never()).insert(any());
     }
 
     @Test

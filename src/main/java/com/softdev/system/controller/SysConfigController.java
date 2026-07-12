@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public class SysConfigController {
 
     @PutMapping
     @Operation(summary = "更新配置")
-    public ReturnUtil<Void> update(@Valid @RequestBody SysConfigDTO dto) {
+    public ReturnUtil<Void> update(@Validated(SysConfigDTO.Update.class) @RequestBody SysConfigDTO dto) {
         SysConfig config = new SysConfig();
         config.setId(dto.getId());
         config.setParamKey(dto.getParamKey());

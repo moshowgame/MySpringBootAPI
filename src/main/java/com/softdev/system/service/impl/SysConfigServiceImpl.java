@@ -7,6 +7,7 @@ import com.softdev.system.service.SysConfigService;
 import com.softdev.system.vo.SysConfigVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,11 +42,17 @@ public class SysConfigServiceImpl implements SysConfigService {
     }
 
     @Override
+    @Transactional
     public void create(SysConfig config) {
+        SysConfig existing = sysConfigMapper.selectByParamKey(config.getParamKey());
+        if (existing != null) {
+            throw new BusinessException("配置键已存在: " + config.getParamKey());
+        }
         sysConfigMapper.insert(config);
     }
 
     @Override
+    @Transactional
     public void update(SysConfig config) {
         int rows = sysConfigMapper.updateById(config);
         if (rows == 0) {
@@ -54,6 +61,7 @@ public class SysConfigServiceImpl implements SysConfigService {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
         int rows = sysConfigMapper.deleteById(id);
         if (rows == 0) {

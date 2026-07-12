@@ -7,6 +7,7 @@ import com.softdev.system.security.JwtTokenProvider;
 import com.softdev.system.service.SysUserService;
 import com.softdev.system.util.ReturnUtil;
 import com.softdev.system.vo.LoginVO;
+import com.softdev.system.vo.UserVerifyVO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -45,8 +46,6 @@ class AuthControllerTest {
         mockUser.setId(1L);
         mockUser.setUsername("admin");
 
-        when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
-                .thenReturn(mock(org.springframework.security.core.Authentication.class));
         when(jwtTokenProvider.generateToken("admin")).thenReturn("test-jwt-token");
         when(sysUserService.getByUsername("admin")).thenReturn(mockUser);
 
@@ -94,19 +93,18 @@ class AuthControllerTest {
         user.setStatus(1);
         when(sysUserService.getByToken("abc123")).thenReturn(user);
 
-        ReturnUtil<SysUser> result = authController.verifyToken("abc123");
+        ReturnUtil<UserVerifyVO> result = authController.verifyToken("abc123");
 
         assertEquals(200, result.getCode());
         assertNotNull(result.getData());
         assertEquals("admin", result.getData().getUsername());
-        assertNull(result.getData().getPassword());
     }
 
     @Test
     void verifyToken_invalid() {
         when(sysUserService.getByToken("invalid")).thenReturn(null);
 
-        ReturnUtil<SysUser> result = authController.verifyToken("invalid");
+        ReturnUtil<UserVerifyVO> result = authController.verifyToken("invalid");
 
         assertEquals(500, result.getCode());
         assertNull(result.getData());
@@ -120,7 +118,7 @@ class AuthControllerTest {
         user.setStatus(0);
         when(sysUserService.getByToken("token123")).thenReturn(user);
 
-        ReturnUtil<SysUser> result = authController.verifyToken("token123");
+        ReturnUtil<UserVerifyVO> result = authController.verifyToken("token123");
 
         assertEquals(500, result.getCode());
     }

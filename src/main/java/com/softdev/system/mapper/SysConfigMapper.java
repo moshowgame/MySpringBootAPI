@@ -20,8 +20,9 @@ public interface SysConfigMapper {
     @Select("SELECT t.param_value FROM sys_config t WHERE t.param_key = #{name}")
     String value(String name);
 
-    @Insert("INSERT INTO sys_config(id, param_key, param_value, status, remark) " +
-            "VALUES(#{id}, #{paramKey}, #{paramValue}, #{status}, #{remark})")
+    @Insert("INSERT INTO sys_config(param_key, param_value, status, remark) " +
+            "VALUES(#{paramKey}, #{paramValue}, #{status}, #{remark})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
     int insert(SysConfig sysConfig);
 
     @Update("UPDATE sys_config SET param_key=#{paramKey}, param_value=#{paramValue}, " +

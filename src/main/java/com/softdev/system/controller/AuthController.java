@@ -7,13 +7,13 @@ import com.softdev.system.security.JwtTokenProvider;
 import com.softdev.system.service.SysUserService;
 import com.softdev.system.util.ReturnUtil;
 import com.softdev.system.vo.LoginVO;
+import com.softdev.system.vo.UserVerifyVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -35,11 +35,10 @@ public class AuthController {
     @PostMapping("/login")
     @Operation(summary = "用户登录")
     public ReturnUtil<LoginVO> login(@Valid @RequestBody LoginRequest request) {
-        Authentication authentication = authenticationManager.authenticate(
+        authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
         String jwtToken = jwtTokenProvider.generateToken(request.getUsername());
 
-        // generate and save a static token for the user
         String staticToken = UUID.randomUUID().toString().replace("-", "");
         SysUser user = sysUserService.getByUsername(request.getUsername());
         user.setToken(staticToken);
@@ -61,7 +60,7 @@ public class AuthController {
 
     @GetMapping("/verify")
     @Operation(summary = "Token验证（公开接口）")
-    public ReturnUtil<SysUser> verifyToken(@RequestParam String token) {
+    public ReturnUtil<UserVerifyVO> verifyToken(@RequestParam String token) {
         SysUser user = sysUserService.getByToken(token);
         if (user == null) {
             return ReturnUtil.define(500, "无效的token", null);
@@ -69,7 +68,12 @@ public class AuthController {
         if (user.getStatus() != null && user.getStatus() == 0) {
             return ReturnUtil.define(500, "用户已禁用", null);
         }
-        user.setPassword(null);
-        return ReturnUtil.data(user);
+        UserVerifyVO vo = new UserVerifyVO();
+        vo.setId(user.getId());
+        vo.setUsername(user.getUsername());
+        vo.setNickname(user.getNickname());
+        vo.setEmail(user.getEmail());
+        vo.setStatus(user.getStatus());
+        return ReturnUtil.data(vo);
     }
 }

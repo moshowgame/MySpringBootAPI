@@ -58,7 +58,7 @@ spring:
           # 登录名
           login-username: admin
           # 登录密码
-          login-password: 123456
+          login-password: ENC(KOqROucOnAKqiYNZCy8tjA==)
 decorator:
   datasource:
     p6spy:
@@ -74,7 +74,7 @@ mybatis:
     map-underscore-to-camel-case: true
 
 jwt:
-  secret: Y2hhbmdlLXRoaXMtdG8tYS1sb25nLXNlY3JldC1rZXktZm9yLWp3dC10b2tlbi1nZW5lcmF0aW9u
+  secret: ENC(DqCxj96IPCPwdi/EMW5uFhtGH3BzxS72i3gFxLlG7sOJ9vdpa6C5JbK/Ze/RqRsEaaedZLUbuvOWUirTlUxeHEczhnMvjEtKnBNgm/Cbu2rtRonzJKQAFw==)
   expiration: 86400000
 
 cors:

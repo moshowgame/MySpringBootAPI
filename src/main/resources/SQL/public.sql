@@ -1,27 +1,16 @@
 /*
- Navicat Premium Data Transfer
+ Sys Config Table
 
- Source Server         : localhost_pg_5432
  Source Server Type    : PostgreSQL
- Source Server Version : 160002 (160002)
- Source Host           : localhost:5432
- Source Catalog        : test
- Source Schema         : public
-
- Target Server Type    : PostgreSQL
- Target Server Version : 160002 (160002)
- File Encoding         : 65001
-
- Date: 27/06/2024 13:33:57
+ File Encoding        : 65001
 */
-
 
 -- ----------------------------
 -- Table structure for sys_config
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."sys_config";
 CREATE TABLE "public"."sys_config" (
-  "id" int8 NOT NULL,
+  "id" int8 NOT NULL GENERATED ALWAYS AS IDENTITY,
   "param_key" varchar(50) COLLATE "pg_catalog"."default",
   "param_value" varchar(2000) COLLATE "pg_catalog"."default",
   "status" int2,
@@ -37,7 +26,7 @@ COMMENT ON TABLE "public"."sys_config" IS '系统配置信息表';
 -- ----------------------------
 -- Records of sys_config
 -- ----------------------------
-INSERT INTO "public"."sys_config" VALUES (1, 'developer', 'zhengkai.blog.csdn.net', 1, '开发者');
+INSERT INTO "public"."sys_config"(param_key, param_value, status, remark) VALUES ('developer', 'zhengkai.blog.csdn.net', 1, '开发者');
 
 -- ----------------------------
 -- Indexes structure for table sys_config

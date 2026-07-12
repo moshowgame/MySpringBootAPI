@@ -16,9 +16,9 @@ import java.util.regex.Pattern;
 public class SqlInjectionFilter implements Filter {
 
     private static final Pattern SQL_INJECTION_PATTERN = Pattern.compile(
-            "(?i)(\\b(union|select|insert|update|delete|drop|alter|truncate|exec|execute)\\b.*\\b(from|into|table|database|where)\\b)"
+            "(?i)(\\b(union)\\b.*\\b(select)\\b)"
                     + "|(?i)(\\b(or|and)\\b\\s+\\d+\\s*=\\s*\\d+)"
-                    + "|(?i)(--|;|/\\*|\\*/)",
+                    + "|(?i)(/\\*.*\\*/)",
             Pattern.CASE_INSENSITIVE
     );
 

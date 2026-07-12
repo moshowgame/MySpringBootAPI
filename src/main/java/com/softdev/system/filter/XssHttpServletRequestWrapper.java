@@ -40,11 +40,7 @@ public class XssHttpServletRequestWrapper extends HttpServletRequestWrapper {
         }
         return value.replaceAll("<", "&lt;")
                      .replaceAll(">", "&gt;")
-                     .replaceAll("\\(", "&#40;")
-                     .replaceAll("\\)", "&#41;")
-                     .replaceAll("'", "&#39;")
-                     .replaceAll("eval\\((.*)\\)", "")
-                     .replaceAll("[\"'][\\s]*javascript:(.*)[\"']", "\"\"")
-                     .replaceAll("script", "");
+                     .replaceAll("\"", "&quot;")
+                     .replaceAll("'", "&#39;");
     }
 }
