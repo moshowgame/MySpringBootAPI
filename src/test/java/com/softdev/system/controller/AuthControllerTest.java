@@ -41,9 +41,14 @@ class AuthControllerTest {
         request.setUsername("admin");
         request.setPassword("admin123");
 
+        SysUser mockUser = new SysUser();
+        mockUser.setId(1L);
+        mockUser.setUsername("admin");
+
         when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
                 .thenReturn(mock(org.springframework.security.core.Authentication.class));
         when(jwtTokenProvider.generateToken("admin")).thenReturn("test-jwt-token");
+        when(sysUserService.getByUsername("admin")).thenReturn(mockUser);
 
         ReturnUtil<LoginVO> result = authController.login(request);
 
@@ -51,6 +56,8 @@ class AuthControllerTest {
         assertNotNull(result.getData());
         assertEquals("test-jwt-token", result.getData().getToken());
         assertEquals("admin", result.getData().getUsername());
+        assertNotNull(result.getData().getStaticToken());
+        verify(sysUserService).updateUser(any(SysUser.class));
     }
 
     @Test
@@ -76,5 +83,45 @@ class AuthControllerTest {
 
         assertEquals(200, result.getCode());
         verify(sysUserService).register(any(SysUser.class));
+    }
+
+    @Test
+    void verifyToken_valid() {
+        SysUser user = new SysUser();
+        user.setId(1L);
+        user.setUsername("admin");
+        user.setToken("abc123");
+        user.setStatus(1);
+        when(sysUserService.getByToken("abc123")).thenReturn(user);
+
+        ReturnUtil<SysUser> result = authController.verifyToken("abc123");
+
+        assertEquals(200, result.getCode());
+        assertNotNull(result.getData());
+        assertEquals("admin", result.getData().getUsername());
+        assertNull(result.getData().getPassword());
+    }
+
+    @Test
+    void verifyToken_invalid() {
+        when(sysUserService.getByToken("invalid")).thenReturn(null);
+
+        ReturnUtil<SysUser> result = authController.verifyToken("invalid");
+
+        assertEquals(500, result.getCode());
+        assertNull(result.getData());
+    }
+
+    @Test
+    void verifyToken_disabledUser() {
+        SysUser user = new SysUser();
+        user.setId(1L);
+        user.setUsername("admin");
+        user.setStatus(0);
+        when(sysUserService.getByToken("token123")).thenReturn(user);
+
+        ReturnUtil<SysUser> result = authController.verifyToken("token123");
+
+        assertEquals(500, result.getCode());
     }
 }

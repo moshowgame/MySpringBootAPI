@@ -28,6 +28,16 @@ public class SysUserServiceImpl implements SysUserService {
     }
 
     @Override
+    public SysUser getByToken(String token) {
+        return sysUserMapper.selectByToken(token);
+    }
+
+    @Override
+    public void updateUser(SysUser user) {
+        sysUserMapper.updateById(user);
+    }
+
+    @Override
     public void register(SysUser user) {
         SysUser existing = sysUserMapper.selectByUsername(user.getUsername());
         if (existing != null) {

@@ -15,6 +15,7 @@ CREATE TABLE "public"."sys_user" (
   "password" varchar(200) COLLATE "pg_catalog"."default" NOT NULL,
   "nickname" varchar(50) COLLATE "pg_catalog"."default",
   "email" varchar(100) COLLATE "pg_catalog"."default",
+  "token" varchar(64) COLLATE "pg_catalog"."default",
   "status" int2 DEFAULT 1,
   "create_time" timestamp DEFAULT CURRENT_TIMESTAMP,
   "update_time" timestamp DEFAULT CURRENT_TIMESTAMP
@@ -24,6 +25,7 @@ COMMENT ON COLUMN "public"."sys_user"."username" IS '用户名';
 COMMENT ON COLUMN "public"."sys_user"."password" IS '密码(BCrypt加密)';
 COMMENT ON COLUMN "public"."sys_user"."nickname" IS '昵称';
 COMMENT ON COLUMN "public"."sys_user"."email" IS '邮箱';
+COMMENT ON COLUMN "public"."sys_user"."token" IS '用户静态Token(登录时自动生成)';
 COMMENT ON COLUMN "public"."sys_user"."status" IS '状态 0：禁用 1：启用';
 COMMENT ON TABLE "public"."sys_user" IS '系统用户表';
 
@@ -31,6 +33,7 @@ COMMENT ON TABLE "public"."sys_user" IS '系统用户表';
 -- Indexes
 -- ----------------------------
 CREATE UNIQUE INDEX "uk_username" ON "public"."sys_user" USING btree ("username");
+CREATE UNIQUE INDEX "uk_token" ON "public"."sys_user" USING btree ("token");
 
 -- ----------------------------
 -- Primary Key

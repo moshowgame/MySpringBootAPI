@@ -8,5 +8,9 @@ public interface SysUserService {
 
     SysUser getById(Long id);
 
+    SysUser getByToken(String token);
+
+    void updateUser(SysUser user);
+
     void register(SysUser user);
 }

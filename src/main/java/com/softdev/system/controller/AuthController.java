@@ -14,10 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @Tag(name = "AuthController", description = "认证控制器")
 @RestController
@@ -38,8 +37,15 @@ public class AuthController {
     public ReturnUtil<LoginVO> login(@Valid @RequestBody LoginRequest request) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-        String token = jwtTokenProvider.generateToken(request.getUsername());
-        return ReturnUtil.data(new LoginVO(token, request.getUsername()));
+        String jwtToken = jwtTokenProvider.generateToken(request.getUsername());
+
+        // generate and save a static token for the user
+        String staticToken = UUID.randomUUID().toString().replace("-", "");
+        SysUser user = sysUserService.getByUsername(request.getUsername());
+        user.setToken(staticToken);
+        sysUserService.updateUser(user);
+
+        return ReturnUtil.data(new LoginVO(jwtToken, request.getUsername(), staticToken));
     }
 
     @PostMapping("/register")
@@ -51,5 +57,19 @@ public class AuthController {
         user.setNickname(request.getNickname());
         sysUserService.register(user);
         return ReturnUtil.success();
+    }
+
+    @GetMapping("/verify")
+    @Operation(summary = "Token验证（公开接口）")
+    public ReturnUtil<SysUser> verifyToken(@RequestParam String token) {
+        SysUser user = sysUserService.getByToken(token);
+        if (user == null) {
+            return ReturnUtil.define(500, "无效的token", null);
+        }
+        if (user.getStatus() != null && user.getStatus() == 0) {
+            return ReturnUtil.define(500, "用户已禁用", null);
+        }
+        user.setPassword(null);
+        return ReturnUtil.data(user);
     }
 }
