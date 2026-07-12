@@ -20,12 +20,13 @@
 		<postgresql.version>42.3.10</postgresql.version>
 		<hutool.version>5.8.28</hutool.version>
 		<commonslang3.version>3.17.0</commonslang3.version>
-		<junit.version>4.13.1</junit.version>
-		<mybatisplus.version>3.5.8</mybatisplus.version>
+			<mybatis.version>3.0.4</mybatis.version>
 		<jakarta.version>6.1.0</jakarta.version>
 		<fastjson.version>2.0.53</fastjson.version>
 		<p6sy.version>1.10.0</p6sy.version>
-		<springdoc.version>2.6.0</springdoc.version>
+			<springdoc.version>2.6.0</springdoc.version>
+			<jjwt.version>0.12.6</jjwt.version>
+			<jasypt.version>3.0.5</jasypt.version>
 	</properties>
 
 	<repositories>
@@ -58,24 +59,16 @@
 		</dependency>
 
 		<!-- 实现web功能 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-json</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-undertow</artifactId>
-		</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+				<exclusions>
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-json</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
 		<!-- 模版 -->
 		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-freemarker -->
 		<!--<dependency>
@@ -116,22 +109,16 @@
 			<version>${commonslang3.version}</version>
 		</dependency>
 		<!-- springboot-json -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-json</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>${junit.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-spring-boot3-starter -->
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatis-plus-spring-boot3-starter</artifactId>
-			<version>${mybatisplus.version}</version>
-		</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-json</artifactId>
+			</dependency>
+		<!-- https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter -->
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.version}</version>
+			</dependency>
 		<!-- https://mvnrepository.com/artifact/com.alibaba.fastjson2/fastjson2-extension -->
 		<dependency>
 			<groupId>com.alibaba.fastjson2</groupId>
@@ -154,11 +141,56 @@
 			<version>${springdoc.version}</version>
 		</dependency>
 		<!-- springdoc Runtime library -->
-		<dependency>
-			<groupId>com.github.therapi</groupId>
-			<artifactId>therapi-runtime-javadoc</artifactId>
-			<version>0.15.0</version>
-		</dependency>
+			<dependency>
+				<groupId>com.github.therapi</groupId>
+				<artifactId>therapi-runtime-javadoc</artifactId>
+				<version>0.15.0</version>
+			</dependency>
+			<!-- Spring Security -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+			</dependency>
+			<!-- JWT -->
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-api</artifactId>
+				<version>${jjwt.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-impl</artifactId>
+				<version>${jjwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt-jackson</artifactId>
+				<version>${jjwt.version}</version>
+				<scope>runtime</scope>
+			</dependency>
+			<!-- Jasypt for config encryption -->
+			<dependency>
+				<groupId>com.github.ulisesbocchio</groupId>
+				<artifactId>jasypt-spring-boot-starter</artifactId>
+				<version>${jasypt.version}</version>
+			</dependency>
+			<!-- Validation -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-validation</artifactId>
+			</dependency>
+			<!-- AOP -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-aop</artifactId>
+			</dependency>
+			<!-- Test -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+			</dependency>
 	</dependencies>
 
 	<build>
@@ -171,14 +203,19 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<annotationProcessorPaths>
-						<path>
-							<groupId>com.github.therapi</groupId>
-							<artifactId>therapi-runtime-javadoc-scribe</artifactId>
-							<version>0.15.0</version>
-						</path>
-					</annotationProcessorPaths>
-				</configuration>
+						<annotationProcessorPaths>
+							<path>
+								<groupId>org.projectlombok</groupId>
+								<artifactId>lombok</artifactId>
+								<version>${lombok.version}</version>
+							</path>
+							<path>
+								<groupId>com.github.therapi</groupId>
+								<artifactId>therapi-runtime-javadoc-scribe</artifactId>
+								<version>0.15.0</version>
+							</path>
+						</annotationProcessorPaths>
+					</configuration>
 			</plugin>
 		</plugins>
 	</build>

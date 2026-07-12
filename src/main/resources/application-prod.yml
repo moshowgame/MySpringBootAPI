@@ -1,1 +1,75 @@
-#请在这里复制一份DEV.YML并开始配置你的PRODUCTION配置，记得不要不小心上传到github哦!
+# 生产环境配置
+# 请根据实际生产环境修改以下配置
+# 重要：JASYPT_PASSWORD 必须通过环境变量注入，不要写在配置文件中
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+  tomcat:
+    threads:
+      max: 400
+      min-spare: 20
+    max-connections: 10000
+    accept-count: 200
+    uri-encoding: UTF-8
+
+spring:
+  banner:
+    charset: UTF-8
+  application:
+    name: MySpringBootAPI
+  mvc:
+    static-path-pattern: /static/**
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://PROD_HOST:5432/PROD_DB?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=Asia/Shanghai
+    username: ENC(REPLACE_WITH_ENCRYPTED_USERNAME)
+    password: ENC(REPLACE_WITH_ENCRYPTED_PASSWORD)
+    druid:
+      initialSize: 10
+      minIdle: 10
+      maxActive: 50
+      maxWait: 60000
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: SELECT 1
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      filters: stat,wall,slf4j
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=3000
+      web-stat-filter:
+        enabled: true
+        url-pattern: "/*"
+        exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*,/system/druid/*"
+      stat-view-servlet:
+        enabled: false
+
+decorator:
+  datasource:
+    p6spy:
+      enabled: false
+
+springdoc:
+  api-docs:
+    enabled: false
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+jwt:
+  secret: REPLACE_WITH_YOUR_PRODUCTION_JWT_SECRET_KEY
+  expiration: 86400000
+
+cors:
+  allowed-origins: "https://your-production-domain.com"
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD}

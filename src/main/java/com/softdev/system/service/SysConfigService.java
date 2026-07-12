@@ -1,15 +1,22 @@
 package com.softdev.system.service;
 
-import com.softdev.system.mapper.SysConfigMapper;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.softdev.system.vo.SysConfigVO;
 
-@Service
-@Slf4j
-public class SysConfigService {
-    @Autowired
-    SysConfigMapper sysConfigMapper;
+import java.util.List;
 
+public interface SysConfigService {
 
+    SysConfigVO getById(Long id);
+
+    List<SysConfigVO> list();
+
+    SysConfigVO getByParamKey(String paramKey);
+
+    String getValue(String key);
+
+    void create(com.softdev.system.entity.SysConfig config);
+
+    void update(com.softdev.system.entity.SysConfig config);
+
+    void deleteById(Long id);
 }

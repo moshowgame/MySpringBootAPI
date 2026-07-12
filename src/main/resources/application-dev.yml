@@ -1,31 +1,19 @@
 server:
   port: 12666
   servlet:
-      context-path: /api
-  undertow:
+    context-path: /api
+  tomcat:
     threads:
-      io: 4
-      worker: 20
-    url-charset: UTF-8
+      max: 200
+      min-spare: 10
+    max-connections: 8192
+    accept-count: 100
+    uri-encoding: UTF-8
 spring:
     banner:
       charset: UTF-8
     application:
         name: MySpringBootAPI
-    freemarker:
-        request-context-attribute: request
-        suffix: .html
-        content-type: text/html
-        enabled: true
-        cache: false
-        charset: UTF-8
-        allow-request-override: false
-        expose-request-attributes: true
-        expose-session-attributes: true
-        expose-spring-macro-helpers: true
-        template-loader-path: classpath:/templates/
-        settings:
-          number_format: 0.##
     mvc:
       static-path-pattern: /static/**
     servlet:
@@ -37,7 +25,7 @@ spring:
       driverClassName: org.postgresql.Driver
       url: jdbc:postgresql://127.0.0.1:5432/test?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
       username: postgres
-      password: root123
+      password: ENC(OYwKBj1pPp0V5NsRyMclq5+rJnqChUQ5T6W4W4NnC6k=)
       druid:
         initialSize: 5
         minIdle: 5
@@ -81,3 +69,17 @@ springdoc:
     enabled: true
     path: /api-doc
   show-login-endpoint: true
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+jwt:
+  secret: Y2hhbmdlLXRoaXMtdG8tYS1sb25nLXNlY3JldC1rZXktZm9yLWp3dC10b2tlbi1nZW5lcmF0aW9u
+  expiration: 86400000
+
+cors:
+  allowed-origins: "http://localhost:3000,http://localhost:8080"
+
+jasypt:
+  encryptor:
+    password: ${JASYPT_PASSWORD:devsecret}

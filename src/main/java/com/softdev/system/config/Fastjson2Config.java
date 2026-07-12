@@ -1,6 +1,5 @@
 package com.softdev.system.config;
 
-import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.support.config.FastJsonConfig;
 import com.alibaba.fastjson2.support.spring6.http.converter.FastJsonHttpMessageConverter;
 import lombok.extern.slf4j.Slf4j;
@@ -16,6 +15,10 @@ import java.util.List;
 @Slf4j
 @Configuration
 public class Fastjson2Config implements WebMvcConfigurer {
+    /**
+     * Fastjson2Config
+     * @author <a href="https://zhengkai.blog.csdn.net/">zhengkai.blog.csdn.net</a>
+     */
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
